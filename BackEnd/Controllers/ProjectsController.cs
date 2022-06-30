@@ -23,6 +23,7 @@ namespace BackEnd.Controllers
                     Image = string.Concat(image, ".png"),
                     Accessed = DateTime.Now                    
                 });
+                Thread.Sleep(250); // para gerar datas diferentes e acessar os mais recentes
                 image++;                
             }
 

@@ -29,6 +29,10 @@ h3 {
   font-weight: bold;
 }
 
+.alert {
+  color: #e84c62;
+}
+
 .margin-8-right {
   margin-right: 8px;
 }

@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  error: boolean = false;
+
   form = new UntypedFormGroup({
     email: new UntypedFormControl(),
     password: new UntypedFormControl(),
@@ -21,10 +23,15 @@ export class LoginComponent implements OnInit {
   entrar(): void {
     if (this.form.valid) {
       this.service
-        .entrar(this.form.get('email')?.value, this.form.get('password')?.value)
-        .subscribe((response) => {
-          localStorage.setItem('token', response.token);
-          this.router.navigate(['/home']);
+        .login(this.form.get('email')?.value, this.form.get('password')?.value)
+        .subscribe({
+          next: (response) => {
+            localStorage.setItem('token', response.token);
+            this.router.navigate(['/home']);
+          },
+          error: () => {
+            this.error = true;
+          },
         });
     }
   }
